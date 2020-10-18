@@ -4,6 +4,6 @@ Adds optional field for "author" of project to it's administration.
 It will be displayed on the "overview" page for project in the members section
 
 
-== install ==
+== install
 this plugin needs 'migration', thus follow guide here:
 https://redmine.org/projects/redmine/wiki/Plugins#Installing-a-plugin
