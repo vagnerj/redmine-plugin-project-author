@@ -1,6 +1,6 @@
 # pridat callback na mazani projektu, pro pripad ze to nekdo vola pres API> implementace se deleguje do ProjectAuthor
 module RedminePluginProjectAuthor
-  module ProjectPatch
+  module ProjectsModelPatch
     def self.included(base)
       # :nodoc:
       base.extend(ClassMethods)
@@ -17,7 +17,6 @@ module RedminePluginProjectAuthor
 
         safe_attributes 'author'
 
-        puts "opice zaplatuje Project model!"
       end
 
     end

@@ -1,23 +1,25 @@
-# Hooks to attach to the Redmine Projects.
-class ProjectAuthorViewHook < Redmine::Hook::ViewListener
+module RedminePluginProjectAuthor
 
-  # adds select box with users to select project author
-  #
-  # view:  <%= call_hook(:view_projects_form, :project => @project, :form => f) %>
-  def view_projects_form(context = {})
+  class ProjectAuthorViewHook < Redmine::Hook::ViewListener
 
-    proj = context[:project]
-    form = context[:form]
+    # adds select box with users to select project author
+    #
+    # view:  <%= call_hook(:view_projects_form, :project => @project, :form => f) %>
+    def view_projects_form(context = {})
 
-    author_id = ProjectAuthor.project_author_id(proj)
+      proj = context[:project]
+      form = context[:form]
 
-    output = ''
-    output << form.label(l(:field_author), {:for=> "project_author_id"})
-    output << form.collection_select(:author_id, ProjectAuthor.users_for_author_selextbox(proj), :id, :name, { prompt: true, :selected => author_id})
+      author_id = ProjectAuthor.project_author_id(proj)
 
-    return tag.p(output.html_safe)
+      output = ''
+      output << form.label(l(:field_author), {:for => "project_author_id"})
+      output << form.collection_select(:author_id, ProjectAuthor.users_for_author_selextbox(proj), :id, :name, {prompt: true, blank:true, :selected => author_id})
+
+      return tag.p(output.html_safe)
+
+    end
 
   end
 
 end
-

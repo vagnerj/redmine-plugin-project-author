@@ -13,7 +13,6 @@ module RedminePluginProjectAuthor
 
         after_action :update_project_author, only: [:update, :create]
 
-        puts "opice zaplatuje Project controller!"
       end
 
     end
@@ -23,7 +22,6 @@ module RedminePluginProjectAuthor
 
     module InstanceMethods
       def update_project_author
-        puts "opice rika #{action_name} after_action"
 
         new_author = params[:project][:author_id]
         ProjectAuthor.update_for_project(@project, new_author) unless new_author.nil?
