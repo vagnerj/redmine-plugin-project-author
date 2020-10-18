@@ -11,6 +11,11 @@ ActiveSupport::Reloader.to_prepare do
     Project.send(:include, RedminePluginProjectAuthor::ProjectPatch)
   end
 
+  require 'redmine_plugin_project_author/project_controller_patch'
+
+  unless ProjectsController.included_modules.include? RedminePluginProjectAuthor::ProjectsControllerPatch
+    ProjectsController.send(:include, RedminePluginProjectAuthor::ProjectsControllerPatch)
+  end
 end
 
 require 'redmine_plugin_project_author/project_author_view_hook'
