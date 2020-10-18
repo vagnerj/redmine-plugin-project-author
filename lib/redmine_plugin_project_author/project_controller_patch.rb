@@ -11,9 +11,7 @@ module RedminePluginProjectAuthor
       base.class_eval do
         unloadable # Send unloadable so it will not be unloaded in development
 
-        # TODO copy ?
-        # delete - se chytne action na modelu
-        after_action :update_project_author, only: [:update, :create, :copy]
+        after_action :update_project_author, only: [:update, :create]
 
         puts "opice zaplatuje Project controller!"
       end
@@ -25,7 +23,8 @@ module RedminePluginProjectAuthor
 
     module InstanceMethods
       def update_project_author
-        puts "opice rika trigger after_action"
+        puts "opice rika #{action_name} after_action"
+
         new_author = params[:project][:author_id]
         ProjectAuthor.update_for_project(@project, new_author) unless new_author.nil?
         return true
