@@ -1,0 +1,4 @@
+<%#  TODO tohle jde jiste nejak hezky vytahnout do contorleru/staticke metody na modelu %>
+<% if !(@project.author.nil?) %>
+  <p><span class="label"><%= l(:field_author) %>:</span>  <%= link_to_user User.find(@project.author.user_id) %></p>
+<% end %>

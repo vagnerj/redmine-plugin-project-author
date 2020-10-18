@@ -21,8 +21,9 @@ module RedminePluginProjectAuthor
     end
 
     module InstanceMethods
-      def update_project_author
 
+      # implementation for create/update after_action, to update relation to author
+      def update_project_author
         new_author = params[:project][:author_id]
         ProjectAuthor.update_for_project(@project, new_author) unless new_author.nil?
         return true
